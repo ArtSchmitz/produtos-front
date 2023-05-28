@@ -8,13 +8,25 @@ export const Cadastrar = () => {
     descricao: "",
   });
 
-  const valorInput = e =>
+  const valorInput = (e) =>
     setProduto({ ...produto, [e.target.name]: e.target.value });
 
-    const cadProduto = async e => {
-      e.preventDefault();
-      console.log(produto.titulo, produto.descricao);
-    }
+  const cadProduto = async (e) => {
+    e.preventDefault();
+    // console.log(produto.titulo, produto.descricao);
+
+    await fetch("http://localhost/produtos-back/cadastrar.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ produto }),
+     })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+     });
+  };
 
   return (
     <div>
