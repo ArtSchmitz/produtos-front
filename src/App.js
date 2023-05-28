@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import './App.css';
+import { Home } from './pages/Home'
 
 function App() {
-
-  const getProdutos = async () => {
-    fetch('http://localhost/produtos-back/index.php')
-    .then((response) => response.json())
-    .then((responseJson) => (
-      console.log(responseJson)
-    ));
-  }
-
-  useEffect(() => {
-    getProdutos();
-  }, [])
-
   return (
-   <h1>Listar</h1>
+  <div>
+    <Router>
+      <Switch>
+          <Route path="/" component={Home} />
+      </Switch>
+    </Router>
+  </div>
   );
 }
 
