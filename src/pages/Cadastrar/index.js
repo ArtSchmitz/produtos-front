@@ -7,6 +7,10 @@ export const Cadastrar = () => {
     titulo: "",
     descricao: "",
   });
+  const [status, setStatus] = useState({
+    type: '',
+    mensagem: ''
+  })
 
   const valorInput = (e) =>
     setProduto({ ...produto, [e.target.name]: e.target.value });
@@ -24,13 +28,31 @@ export const Cadastrar = () => {
      })
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
-     });
+        // console.log(responseJson);
+        if(responseJson.erro){
+          setStatus({
+            type: 'erro',
+            mensagem: responseJson.mensagem
+          })
+        }else{
+          setStatus({
+            type: 'sucess',
+            mensagem: responseJson.mensagem
+          })
+        }
+     }).catch(() => {
+      setStatus({
+        type: 'erro',
+        mensagem: 'Erro ao cadastrar produto, tente mais tarde!'
+      })
+     })
   };
 
   return (
     <div>
       <Titulo>Cadastrar</Titulo>
+      {status.type === 'erro'? <p>{status.mensagem}</p> : ""}
+      {status.type === 'sucess'? <p>{status.mensagem}</p> : ""}
       <form onSubmit={cadProduto}>
         <label>Título: </label>
         <input
