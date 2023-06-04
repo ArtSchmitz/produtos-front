@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { Titulo } from "./styles";
+import { Container, ConteudoForm, Titulo, ListButton, Button, AlertSucess, AlertError, Form, Label, Input} from "./styles";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Cadastrar = () => {
   const [produto, setProduto] = useState({
@@ -8,9 +9,9 @@ export const Cadastrar = () => {
     descricao: "",
   });
   const [status, setStatus] = useState({
-    type: '',
-    mensagem: ''
-  })
+    type: "",
+    mensagem: "",
+  });
 
   const valorInput = (e) =>
     setProduto({ ...produto, [e.target.name]: e.target.value });
@@ -25,55 +26,67 @@ export const Cadastrar = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ produto }),
-     })
+    })
       .then((response) => response.json())
       .then((responseJson) => {
         // console.log(responseJson);
-        if(responseJson.erro){
+        if (responseJson.erro) {
           setStatus({
-            type: 'erro',
-            mensagem: responseJson.mensagem
-          })
-        }else{
+            type: "erro",
+            mensagem: responseJson.mensagem,
+          });
+        } else {
           setStatus({
-            type: 'sucess',
-            mensagem: responseJson.mensagem
-          })
+            type: "sucess",
+            mensagem: responseJson.mensagem,
+          });
         }
-     }).catch(() => {
-      setStatus({
-        type: 'erro',
-        mensagem: 'Erro ao cadastrar produto, tente mais tarde!'
       })
-     })
+      .catch(() => {
+        setStatus({
+          type: "erro",
+          mensagem: "Erro ao cadastrar produto, tente mais tarde!",
+        });
+      });
   };
 
   return (
-    <div>
-      <Titulo>Cadastrar</Titulo>
-      {status.type === 'erro'? <p>{status.mensagem}</p> : ""}
-      {status.type === 'sucess'? <p>{status.mensagem}</p> : ""}
-      <form onSubmit={cadProduto}>
-        <label>Título: </label>
-        <input
+    <Container>
+      <ConteudoForm>
+        <ListButton>
+          <Titulo>Cadastrar</Titulo>
+            <Link to="/">
+              <Button>Listar</Button>
+            </Link>
+          </ListButton>
+      {status.type === "erro" ? <AlertError>{status.mensagem}</AlertError> : ""}
+      {status.type === "sucess" ? (
+        <AlertSucess>{status.mensagem}</AlertSucess>
+        ) : (
+          ""
+          )}
+      <Form onSubmit={cadProduto}>
+        <Label>Título: </Label>
+        <Input
           type="text"
           name="titulo"
           placeholder="Título do produto"
           onChange={valorInput}
-        />{" "}
+          />{" "}
         <br />
         <br />
-        <label>Descrição: </label>
-        <input
+        <Label>Descrição: </Label>
+        <Input
           type="text"
           name="descricao"
           placeholder="Descrição do produto"
           onChange={valorInput}
-        />{" "}
+          />{" "}
         <br />
         <br />
-        <button type="submit">Cadastrar</button>
-      </form>
-    </div>
+        <Button type="submit">Cadastrar</Button>
+      </Form>
+     </ConteudoForm>
+    </Container>
   );
 };
