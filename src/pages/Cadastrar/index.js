@@ -56,7 +56,7 @@ export const Cadastrar = () => {
         <ListButton>
           <Titulo>Cadastrar</Titulo>
             <Link to="/">
-              <Button>Listar</Button>
+              <Button>Lista</Button>
             </Link>
           </ListButton>
       {status.type === "erro" ? <AlertError>{status.mensagem}</AlertError> : ""}
