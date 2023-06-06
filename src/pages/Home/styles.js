@@ -13,10 +13,14 @@ export const Table = styled.table`
         background-color: f6f6f6;
         color: #3e3e3e;
         padding: 8px;
-        border: solid .5px;
-        text-align: center;
     }
 
+`;
+
+export const Container = styled.div`
+    max-width: 60%;
+    margin: 50px auto;
+    box-shadow: 0 0 1em #6c757d;
 `;
 
 export const Titulo = styled.h1`
