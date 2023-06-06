@@ -52,19 +52,15 @@ export const Cadastrar = () => {
 
   return (
     <Container>
-      <ConteudoForm>
-        <ListButton>
-          <Titulo>Cadastrar</Titulo>
-            <Link to="/">
-              <Button>Lista</Button>
-            </Link>
-          </ListButton>
+    <ConteudoForm>
+      <ListButton>
+        <Titulo>Cadastrar</Titulo>
+        <Link to="/">
+          <Button>Lista</Button>
+        </Link>
+      </ListButton>
       {status.type === "erro" ? <AlertError>{status.mensagem}</AlertError> : ""}
-      {status.type === "sucess" ? (
-        <AlertSucess>{status.mensagem}</AlertSucess>
-        ) : (
-          ""
-          )}
+      {status.type === "sucess" ? <AlertSucess>{status.mensagem}</AlertSucess> : ""}
       <Form onSubmit={cadProduto}>
         <Label>Título: </Label>
         <Input
@@ -72,7 +68,7 @@ export const Cadastrar = () => {
           name="titulo"
           placeholder="Título do produto"
           onChange={valorInput}
-          />{" "}
+        />
         <br />
         <br />
         <Label>Descrição: </Label>
@@ -81,12 +77,12 @@ export const Cadastrar = () => {
           name="descricao"
           placeholder="Descrição do produto"
           onChange={valorInput}
-          />{" "}
+        />
         <br />
         <br />
         <Button type="submit">Cadastrar</Button>
       </Form>
-     </ConteudoForm>
-    </Container>
+    </ConteudoForm>
+  </Container>
   );
 };

@@ -49,7 +49,7 @@ export const AlertError = styled.p`
     padding: 7px;
 `;
 
-export const ConteudoForm = styled.form`
+export const ConteudoForm = styled.div`
     max-width: 960px;
     padding: 10px 30px 30px;
 `;
