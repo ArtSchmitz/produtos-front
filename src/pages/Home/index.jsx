@@ -12,6 +12,29 @@ export const Home = () => {
       .then((responseJson) => setData(responseJson.records));
   };
 
+  const deleteProduct = (e, id) => {
+    e.preventDefault();
+    console.log("clicando botão")
+      fetch('http://localhost/produtos-back/apagar.php', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ produto: { id: id } }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            alert('Erro ao apagar o produto');
+          } else {
+            alert('Produto apagado com sucesso');
+          }
+        })
+        .catch((error) => {
+          console.error('Erro ao apagar o produto:', error);
+        });
+  };
+
   useEffect(() => {
     getProdutos();
   }, []);
@@ -41,7 +64,8 @@ export const Home = () => {
               <td>{produto.descricao}</td>
               <td>
                 <Link to={"/visualizar/" + produto.id}>Visualizar</Link>
-                 Editar Apagar</td>
+                 Editar 
+                 <button onClick={(e) => deleteProduct(e, produto.id)}>Apagar</button></td>
             </tr>
           ))}
         </tbody>
