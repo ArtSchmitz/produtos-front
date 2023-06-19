@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Titulo, Button, RegisterButton, Container } from "./styles";
+import { Table, Titulo, Button, RegisterButton, Container, ButtonContainer, ButtonVisu, ButtonEdit, ButtonDelete, } from "./styles";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
 export const Home = () => {
@@ -14,7 +14,6 @@ export const Home = () => {
 
   const deleteProduct = (e, id) => {
     e.preventDefault();
-    console.log("clicando botão");
     fetch("http://localhost/produtos-back/apagar.php", {
       method: "DELETE",
       headers: {
@@ -40,6 +39,11 @@ export const Home = () => {
     getProdutos();
   }, []);
 
+  const linkStyle = {
+    color: "#000",  // Define a cor do texto do link
+    textDecoration: "none",  // Remove o sublinhado do link
+  };
+
   return (
     <Container>
       <RegisterButton>
@@ -63,13 +67,18 @@ export const Home = () => {
               <td>{produto.id}</td>
               <td>{produto.titulo}</td>
               <td>{produto.descricao}</td>
-              <td>
-                <Link to={"/visualizar/" + produto.id}>Visualizar</Link>
-                <Link to={"/editar/" + produto.id}>Editar</Link>
-                <button onClick={(e) => deleteProduct(e, produto.id)}>
-                  Apagar
-                </button>
-              </td>
+              <ButtonContainer>            
+                 <td>
+                    <Link to={"/visualizar/" + produto.id}  style={linkStyle}>
+                      <ButtonVisu>Visualizar</ButtonVisu>
+                      </Link>
+                    <Link to={"/editar/" + produto.id}  style={linkStyle}>
+                    <ButtonEdit>Editar</ButtonEdit></Link>
+                    <ButtonDelete onClick={(e) => deleteProduct(e, produto.id)}>
+                      Apagar
+                    </ButtonDelete>
+                  </td>
+              </ButtonContainer>
             </tr>
           ))}
         </tbody>

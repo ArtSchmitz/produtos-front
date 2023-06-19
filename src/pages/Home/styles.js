@@ -14,7 +14,6 @@ export const Table = styled.table`
         color: #3e3e3e;
         padding: 8px;
     }
-
 `;
 
 export const Container = styled.div`
@@ -47,4 +46,48 @@ export const RegisterButton = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 0 10px;
+`;
+
+export const ButtonContainer = styled.div`
+    td{
+        display: flex;
+        justify-content: space-around;
+        text-decoration: none;
+    }
+
+    div{
+        color: #fff;
+        width: 80px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+    }
+
+`;
+
+export const ButtonVisu = styled.div`
+    background-color: #1E90FF;
+
+    :hover{
+        background-color: #00CED1;
+    }
+`;
+
+export const ButtonEdit = styled.div`
+    background-color: #228B22;
+
+    :hover{
+        background-color: #5FAA5F;
+    }
+`;
+
+export const ButtonDelete = styled.div`
+    background-color: #B22222;
+    cursor: pointer;
+
+    :hover{
+        background-color: #D86F6F;
+    }
 `;
