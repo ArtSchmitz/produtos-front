@@ -67,27 +67,11 @@ export const ButtonContainer = styled.div`
 
 `;
 
-export const ButtonVisu = styled.div`
-    background-color: #1E90FF;
+export const Visu = styled.a``;
 
-    :hover{
-        background-color: #00CED1;
-    }
-`;
+export const Edit = styled.a``;
 
-export const ButtonEdit = styled.div`
-    background-color: #228B22;
-
-    :hover{
-        background-color: #5FAA5F;
-    }
-`;
-
-export const ButtonDelete = styled.div`
-    background-color: #B22222;
+export const Delete = styled.a`
     cursor: pointer;
 
-    :hover{
-        background-color: #D86F6F;
-    }
 `;

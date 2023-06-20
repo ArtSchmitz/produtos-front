@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Titulo, Button, RegisterButton, Container, ButtonContainer, ButtonVisu, ButtonEdit, ButtonDelete, } from "./styles";
+import { Table, Titulo, Button, RegisterButton, Container, ButtonContainer, Visu, Edit, Delete, } from "./styles";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
 export const Home = () => {
@@ -67,16 +67,22 @@ export const Home = () => {
               <td>{produto.id}</td>
               <td>{produto.titulo}</td>
               <td>{produto.descricao}</td>
+              <img src="" alt="" />
               <ButtonContainer>            
                  <td>
                     <Link to={"/visualizar/" + produto.id}  style={linkStyle}>
-                      <ButtonVisu>Visualizar</ButtonVisu>
+                      <Visu>
+                        <img src="bloco-de-anotacoes.png" alt="visu" width={30} />
+                      </Visu>
                       </Link>
                     <Link to={"/editar/" + produto.id}  style={linkStyle}>
-                    <ButtonEdit>Editar</ButtonEdit></Link>
-                    <ButtonDelete onClick={(e) => deleteProduct(e, produto.id)}>
-                      Apagar
-                    </ButtonDelete>
+                    <Edit>
+                      <img src="editar.png" alt="edit" width={30} />
+                    </Edit>
+                    </Link>
+                    <Delete onClick={(e) => deleteProduct(e, produto.id)}>
+                    <img src="excluir.png" alt="delete" width={30} />
+                    </Delete>
                   </td>
               </ButtonContainer>
             </tr>
