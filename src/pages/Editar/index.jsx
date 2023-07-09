@@ -8,7 +8,7 @@ export const Editar = (props) => {
   useEffect(() => {
     const getProduto = async () => {
       const response = await fetch(
-        "http://localhost/produtos-back/visualizar.php?id=" + id
+        "http://localhost/produtos-back/editar.php?id=" + id
       );
       const responseJson = await response.json();
       console.log(responseJson);
