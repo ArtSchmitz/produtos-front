@@ -40,8 +40,8 @@ export const Home = () => {
   }, []);
 
   const linkStyle = {
-    color: "#000",  // Define a cor do texto do link
-    textDecoration: "none",  // Remove o sublinhado do link
+    color: "#000", 
+    textDecoration: "none",  
   };
 
   return (
